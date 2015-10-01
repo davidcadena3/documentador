@@ -7,6 +7,7 @@ public class Parametro {
 	private Visibilidad visibilidad;
 	private Boolean esEstatico;
 	private Boolean esFinal;
+	private String comentario;
 
 	public String getNombre() {
 		return nombre;
@@ -46,6 +47,14 @@ public class Parametro {
 
 	public void setEsFinal(Boolean esFinal) {
 		this.esFinal = esFinal;
+	}
+
+	public String getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
 	@Override

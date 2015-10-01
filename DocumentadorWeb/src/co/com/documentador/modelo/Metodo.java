@@ -10,6 +10,8 @@ public class Metodo {
 	private Boolean esSincrono;
 	private String nombre;
 	private String comentario;
+	private String autor;
+	private String desde;
 	private List<Parametro> parametros;
 	private Parametro retorno;
 
@@ -75,6 +77,22 @@ public class Metodo {
 
 	public void setEsSincrono(Boolean esSincrono) {
 		this.esSincrono = esSincrono;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getDesde() {
+		return desde;
+	}
+
+	public void setDesde(String desde) {
+		this.desde = desde;
 	}
 
 	@Override

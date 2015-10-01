@@ -3,15 +3,19 @@ package co.com.documentador.implementacion;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.ConstructorDoc;
 import com.sun.javadoc.FieldDoc;
 import com.sun.javadoc.MethodDoc;
+import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.Parameter;
 import com.sun.javadoc.RootDoc;
+import com.sun.javadoc.Tag;
 
 import co.com.documentador.modelo.Clase;
 import co.com.documentador.modelo.Documento;
@@ -110,14 +114,31 @@ public class Logica {
 				auxMetodo.setParametros(new ArrayList<Parametro>());
 
 				Parameter[] parametros = constructor.parameters();
+				Tag[] parmTag = constructor.tags();
+				Map<String, Tag> tags = new HashMap<>();
+
+				for (Tag tag : parmTag) {
+					if (tag.name().equals("@param")) {
+						ParamTag pTag = (ParamTag) tag;
+						tags.put(pTag.kind() + "-" + pTag.parameterName().replace(",", ""), pTag);
+					} else if (tag.name().equals("@return") || tag.name().equals("@author")
+							|| tag.name().equals("@since")) {
+						tags.put(tag.name(), tag);
+					}
+				}
 
 				for (Parameter parametro : parametros) {
 					Parametro auxParametro = new Parametro();
 					auxParametro.setNombre(parametro.name());
 					auxParametro.setTipo(parametro.type().typeName());
+					auxParametro.setComentario(tags.containsKey("@param-" + parametro.name())
+							? tags.get("@param-" + parametro.name()).text() : "");
 
 					auxMetodo.getParametros().add(auxParametro);
 				}
+
+				auxMetodo.setAutor(tags.containsKey("@author") ? tags.get("@author").text() : "");
+				auxMetodo.setDesde(tags.containsKey("@since") ? tags.get("@since").text() : "");
 
 				auxClase.getConstructores().add(auxMetodo);
 			}
@@ -136,18 +157,36 @@ public class Logica {
 				auxMetodo.setEsSincrono(metodo.isSynchronized());
 
 				Parameter[] parametros = metodo.parameters();
+				Tag[] parmTag = metodo.tags();
+				Map<String, Tag> tags = new HashMap<>();
+
+				for (Tag tag : parmTag) {
+					if (tag.name().equals("@param")) {
+						ParamTag pTag = (ParamTag) tag;
+						tags.put(pTag.kind() + "-" + pTag.parameterName().replace(",", ""), pTag);
+					} else if (tag.name().equals("@return") || tag.name().equals("@author")
+							|| tag.name().equals("@since")) {
+						tags.put(tag.name(), tag);
+					}
+				}
 
 				for (Parameter parametro : parametros) {
 					Parametro auxParametro = new Parametro();
 					auxParametro.setNombre(parametro.name());
 					auxParametro.setTipo(parametro.type().typeName());
+					auxParametro.setComentario(tags.containsKey("@param-" + parametro.name())
+							? tags.get("@param-" + parametro.name()).text() : "");
 
 					auxMetodo.getParametros().add(auxParametro);
 				}
 
 				Parametro retorno = new Parametro();
 				retorno.setTipo(metodo.returnType().typeName());
+				retorno.setComentario(tags.containsKey("@return") ? tags.get("@return").text() : "");
 				auxMetodo.setRetorno(retorno);
+
+				auxMetodo.setAutor(tags.containsKey("@author") ? tags.get("@author").text() : "");
+				auxMetodo.setDesde(tags.containsKey("@since") ? tags.get("@since").text() : "");
 
 				auxClase.getMetodos().add(auxMetodo);
 
