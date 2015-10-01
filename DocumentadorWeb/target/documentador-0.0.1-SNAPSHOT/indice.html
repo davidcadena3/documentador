@@ -10,6 +10,11 @@
 <!-- gtree table -->
 <link href="resources/gtreetable/bootstrap-gtreetable.min.css"
 	rel="stylesheet">
+<!-- google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css'>
+<!-- own -->
+<link href="resources/css/main.css" rel="stylesheet">
 <title>Documentador</title>
 </head>
 <body>
@@ -17,22 +22,249 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<h3>Index</h3>
+			<h3>Code documentation</h3>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
+		<div class="col-xs-1"></div>
+		<div class="col-md-3">
 			<table class="table gtreetable" id="gtreetable">
 				<thead>
 					<tr>
-						<th>Package</th>
+						<th>Index</th>
 					</tr>
 				</thead>
 			</table>
 		</div>
-		<div class="col-md-1"></div>
+		<div id="documentacionClase" class="col-md-7">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<h3>
+						<span id="publicClass"
+							class="label label-primary visibilidadClase"
+							style="margin-right: 5px;">Public</span> <span
+							id="protectedClass" class="label label-warning visibilidadClase"
+							style="margin-right: 5px;">Protected</span> <span
+							id="privateClass" class="label label-danger visibilidadClase"
+							style="margin-right: 5px;">Private</span>
+					</h3>
+					<h3 id="className">ClassName</h3>
+					<h5>
+						<span id="interfaceClase"
+							class="label label-info modificadorClase"
+							style="margin-left: 5px;">Interface</span><span id="enumClase"
+							class="label label-info modificadorClase"
+							style="margin-left: 5px;">Enum</span> <span id="abstractClase"
+							class="label label-info modificadorClase"
+							style="margin-left: 5px;">Abstract</span> <span id="finalClase"
+							class="label label-info modificadorClase"
+							style="margin-left: 5px;">Final</span> <span
+							id="serializableClase" class="label label-info modificadorClase"
+							style="margin-left: 5px;">Serializable</span> <span
+							id="staticClase" class="label label-info modificadorClase"
+							style="margin-left: 5px;">Static</span>
+					</h5>
+					<h6 id="commentClase">comment</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" href="#collapse1">Fields <span
+										style="margin-left: 68px;"
+										class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div id="collapse1" class="panel-collapse collapse">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Name</th>
+											<th>Type</th>
+											<th>Modifiers</th>
+										</tr>
+									</thead>
+									<tbody id="fieldsClase">
+										<tr>
+											<th scope="row">1</th>
+											<td>nombre</td>
+											<td>String</td>
+											<td><span class="label label-primary"
+												style="margin-left: 5px;">Public</span><span
+												class="label label-info" style="margin-left: 5px;">Static</span><span
+												class="label label-info" style="margin-left: 5px;">Final</span></td>
+										</tr>
+										<tr>
+											<th scope="row">2</th>
+											<td>Fecha</td>
+											<td>Date</td>
+											<td><span class="label label-primary"
+												style="margin-left: 5px;">Public</span><span
+												class="label label-info" style="margin-left: 5px;">Static</span><span
+												class="label label-info" style="margin-left: 5px;">Final</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" href="#collapse2">Constructors <span
+										style="margin-left: 68px;"
+										class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div id="collapse2" class="panel-collapse collapse">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Name</th>
+											<th>Params</th>
+											<th>Modifiers</th>
+										</tr>
+									</thead>
+									<tbody id="constructorsClase">
+										<tr>
+											<th scope="row">1</th>
+											<td><b>ClassName</b><br> <small>comment</small></td>
+											<td>String:nombre - Date:fecha</td>
+											<td><span class="label label-primary"
+												style="margin-left: 5px;">Public</span></td>
+										</tr>
+										<tr>
+											<th scope="row">1</th>
+											<td><b>ClassName</b><br> <small>comment</small></td>
+											<td>--</td>
+											<td><span class="label label-primary"
+												style="margin-left: 5px;">Public</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" href="#collapse3">Methods <span
+										style="margin-left: 68px;"
+										class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div id="collapse3" class="panel-collapse collapse">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Name</th>
+											<th>Params</th>
+											<th>Return</th>
+											<th>Modifiers</th>
+										</tr>
+									</thead>
+									<tbody id="methodsClase">
+										<tr>
+											<th scope="row">1</th>
+											<td><b>calculate</b><br> <small>comment</small></td>
+											<td>Double:value1 - Double:value2</td>
+											<td>Double</td>
+											<td><span class="label label-primary"
+												style="margin-left: 5px;">Public</span><span
+												class="label label-info" style="margin-left: 5px;">Static</span><span
+												class="label label-info" style="margin-left: 5px;">Final</span><span
+												class="label label-info" style="margin-left: 5px;">Synchronized</span></td>
+										</tr>
+										<tr>
+											<th scope="row">1</th>
+											<td><b>getValue</b><br> <small>comment</small></td>
+											<td>--</td>
+											<td>String</td>
+											<td><span class="label label-primary"
+												style="margin-left: 5px;">Public</span><span
+												class="label label-info" style="margin-left: 5px;">Static</span><span
+												class="label label-info" style="margin-left: 5px;">Final</span><span
+												class="label label-info" style="margin-left: 5px;">Synchronized</span></td>
+										</tr>
+										<tr>
+											<th scope="row">1</th>
+											<td><b>setValue</b><br> <small>comment</small></td>
+											<td>String:value</td>
+											<td>--</td>
+											<td><span class="label label-primary"
+												style="margin-left: 5px;">Public</span><span
+												class="label label-info" style="margin-left: 5px;">Static</span><span
+												class="label label-info" style="margin-left: 5px;">Final</span><span
+												class="label label-info" style="margin-left: 5px;">Synchronized</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+		<div class="col-xs-1"></div>
 	</div>
 
 

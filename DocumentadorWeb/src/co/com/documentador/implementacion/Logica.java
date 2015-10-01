@@ -27,7 +27,7 @@ import co.com.documentador.modelo.Visibilidad;
  */
 public class Logica {
 
-	private static final String RUTA_PROYECTO = "/home/davidcadena/Documents/Workspaces/LandingPages/DocumentadorWeb/src";
+	private static final String RUTA_PROYECTO = "/home/davidcadena/Documents/Workspaces/LandingPages/TelintelSms_gui/src";
 	private static final String PAQUETE_BASE = "co";
 
 	private static TreeMap<String, List<Clase>> indice;
@@ -146,7 +146,7 @@ public class Logica {
 				}
 
 				Parametro retorno = new Parametro();
-				retorno.setNombre(metodo.returnType().typeName());
+				retorno.setTipo(metodo.returnType().typeName());
 				auxMetodo.setRetorno(retorno);
 
 				auxClase.getMetodos().add(auxMetodo);

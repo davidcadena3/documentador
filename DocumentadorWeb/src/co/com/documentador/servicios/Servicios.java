@@ -48,7 +48,7 @@ public class Servicios {
 		} else if (indice.containsKey(id)) {
 			for (Clase clase : indice.get(id)) {
 				Node node = new Node();
-				node.id = id;
+				node.id = id + "@node";
 				node.level = "1";
 				node.name = clase.getNombre();
 				node.type = (clase.getEsInterfaz() != null && clase.getEsInterfaz()) ? "interface"
@@ -67,6 +67,8 @@ public class Servicios {
 	@Produces("application/json")
 	public Clase consultarDocumentacion(@PathParam(value = "paquete") String paquete,
 			@PathParam(value = "clase") String clase) {
+		System.out.println("paquete: " + paquete + ", clase: " + clase);
+		paquete = paquete.replace("@node", "");
 		Logica logica = new Logica();
 
 		List<Clase> aux = logica.crearEstructura(paquete, clase).getClases();

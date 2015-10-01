@@ -98,9 +98,7 @@ function loadDocumentation(json){
 	
 	var fields = "";
 	for(i = 0; i<json.campos.length;i++){
-		console.error(json.campos[i])
-		
-		var textField = "<tr><th scope=\"row\">1</th><td>"+json.campos[i].nombre+"</td><td>"+json.campos[i].tipo+"</td><td>";
+		var textField = "<tr><th scope=\"row\">"+(i+1)+"</th><td>"+json.campos[i].nombre+"</td><td>"+json.campos[i].tipo+"</td><td>";
 		
 		switch (json.campos[i].visibilidad) {
 		case "PRIVADO":
@@ -127,6 +125,89 @@ function loadDocumentation(json){
 	}
 	
 	$("#fieldsClase").html(fields);
+	
+	var constructors = "";
+	for(i = 0; i<json.constructores.length;i++){
+		var consJson = json.constructores[i];
+		var cons = "<tr><th scope=\"row\">"+(i+1)+"</th><td><b>"+consJson.nombre+"</b><br><small>"+consJson.comentario+"</small></td>";
+		cons+="<td>";
+		
+		for(j = 0; j<consJson.parametros.length; j++){
+			var par = consJson.parametros[j];
+			if(j>0){
+				cons+=", ";
+			}
+			cons+=(par.tipo+":"+par.nombre);
+		}
+		cons+="</td><td>";
+		
+		switch (consJson.visibilidad) {
+		case "PRIVADO":
+			cons += "<span class=\"label label-danger style=\"margin-left: 5px;\">Private</span>";
+			break;
+		case "PROTEGIDO":
+			cons += "<span class=\"label label-warning style=\"margin-left: 5px;\">Protected</span>";
+			break;
+		case "PUBLICO":
+			cons += "<span class=\"label label-primary style=\"margin-left: 5px;\">Public</span>";
+			break;
+		}
+		
+		cons+="</td></tr>";
+		console.error(cons);
+		constructors+=cons;
+	}
+	
+	$("#constructorsClase").html(constructors);
+	
+	
+	
+	
+	var methods = "";
+	for(i = 0; i<json.metodos.length;i++){
+		var metJson = json.metodos[i];
+		var mets = "<tr><th scope=\"row\">"+(i+1)+"</th><td><b>"+metJson.nombre+"</b><br><small>"+metJson.comentario+"</small></td>";
+		mets+="<td>";
+		
+		for(j = 0; j<metJson.parametros.length; j++){
+			var par = metJson.parametros[j];
+			if(j>0){
+				mets+=", ";
+			}
+			mets+=(par.tipo+":"+par.nombre);
+		}
+		mets+=("</td><td>"+metJson.retorno.tipo+"</td><td>");
+		
+		switch (metJson.visibilidad) {
+		case "PRIVADO":
+			mets += "<span class=\"label label-danger style=\"margin-left: 5px;\">Private</span>";
+			break;
+		case "PROTEGIDO":
+			mets += "<span class=\"label label-warning style=\"margin-left: 5px;\">Protected</span>";
+			break;
+		case "PUBLICO":
+			mets += "<span class=\"label label-primary style=\"margin-left: 5px;\">Public</span>";
+			break;
+		}
+		
+		if(metJson.esEstatico==true){
+			mets += "<span class=\"label label-info\" style=\"margin-left: 5px;\">Static</span>";
+		}
+		
+		if(metJson.esFinal==true){
+			mets += "<span class=\"label label-info\" style=\"margin-left: 5px;\">Final</span>";
+		}
+		
+		if(metJson.esSincrono==true){
+			mets += "<span class=\"label label-info\" style=\"margin-left: 5px;\">Synchronized</span>";
+		}
+		
+		mets+="</td></tr>";
+		methods+=mets;
+	}
+	
+	
+	$("#methodsClase").html(methods);
 	
 	$("#documentacionClase").show();
 }

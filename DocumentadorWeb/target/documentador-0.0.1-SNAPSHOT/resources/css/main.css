@@ -1,47 +1,12 @@
-/* David Cadena @2015 */
-@CHARSET "US-ASCII";
-
-.logo-header {
-	width: 150px;
-	margin-left: 50px;
+body {
+	font-family: 'Open Sans', sans-serif !important;
 }
 
-.navbar {
-	background: rgba(0, 0, 0, 0);
-	border: none;
+.hidespan {
+	visibility: hidden !important;
 }
 
-html {
-	/* 	height: 100%; */
-	
-}
-
-.main-container {
-	margin-top: 3%;
-}
-
-p {
-	font-size: small;
-	font-weight: normal;
-}
-
-.sub-info-dashboard {
-	display: -webkit-box;
-	padding: 0px 0px 0px 0px;
-}
-
-.sub-info-dashboard:over {
-	
-}
-
-.sub-info-dashboard .sub-info-icon {
-	color: #A4CB6E;
-	text-align: center;
-	align: center;
-}
-
-.sub-info-dashboard .sub-info-panel {
-	background-color: #326753;
-	color: #FFFFFF;
-	border-radius: 5px;
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
+	.table>tbody>tr>td, .table>tfoot>tr>td {
+	padding: 4px;
 }
