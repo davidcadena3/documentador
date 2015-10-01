@@ -31,7 +31,6 @@ function loadGtable() {
 								type : "GET",
 								url : ("rest/servicios/consultarDocumentacion/" + pack+"/"+cla),
 								success : function(json) {
-									console.log("json: " + JSON.stringify(json));
 									loadDocumentation(json);
 								},
 								error : function(XMLHttpRequest) {
@@ -154,7 +153,6 @@ function loadDocumentation(json){
 		}
 		
 		cons+="</td></tr>";
-		console.error(cons);
 		constructors+=cons;
 	}
 	

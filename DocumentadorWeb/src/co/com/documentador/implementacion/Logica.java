@@ -27,8 +27,8 @@ import co.com.documentador.modelo.Visibilidad;
  */
 public class Logica {
 
-	private static final String RUTA_PROYECTO = "/home/davidcadena/Documents/Workspaces/LandingPages/TelintelSms_gui/src";
-	private static final String PAQUETE_BASE = "co";
+	private static final String RUTA_PROYECTO = "/home/davidcadena/git/telintelsms/TelintelSms_RC3.0/src/main/java";
+	private static final String PAQUETE_BASE = "com";
 
 	private static TreeMap<String, List<Clase>> indice;
 
