@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>documentador</display-name>
 	<welcome-file-list>
-		<welcome-file>indice.html</welcome-file>
+		<welcome-file>principal.html</welcome-file>
 	</welcome-file-list>
 
 	<servlet>

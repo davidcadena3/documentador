@@ -31,7 +31,7 @@ import co.com.documentador.modelo.Visibilidad;
  */
 public class Logica {
 
-	private static final String RUTA_PROYECTO = "/home/davidcadena/git/telintelsms/TelintelSms_RC3.0/src/main/java";
+	private static final String RUTA_PROYECTO = "/Users/davidcadena/git/telintelsms/TelintelSms_RC3.0/src/main/java";
 	private static final String PAQUETE_BASE = "com";
 
 	private static TreeMap<String, List<Clase>> indice;
@@ -40,7 +40,8 @@ public class Logica {
 
 		indice = new TreeMap<String, List<Clase>>();
 
-		Documentador doclet = new Documentador(new File(RUTA_PROYECTO), PAQUETE_BASE);
+		Documentador doclet = new Documentador(new File(RUTA_PROYECTO),
+				PAQUETE_BASE);
 		RootDoc doc = doclet.getRootDoc();
 
 		ClassDoc[] clases = doc.classes();
@@ -66,7 +67,8 @@ public class Logica {
 
 	public Documento crearEstructura(String nombrePaquete, String nombreClase) {
 
-		Documentador doclet = new Documentador(new File(RUTA_PROYECTO), nombrePaquete, nombreClase);
+		Documentador doclet = new Documentador(new File(RUTA_PROYECTO),
+				nombrePaquete, nombreClase);
 
 		RootDoc doc = doclet.getRootDoc();
 		ClassDoc[] clases = doc.classes();
@@ -120,8 +122,10 @@ public class Logica {
 				for (Tag tag : parmTag) {
 					if (tag.name().equals("@param")) {
 						ParamTag pTag = (ParamTag) tag;
-						tags.put(pTag.kind() + "-" + pTag.parameterName().replace(",", ""), pTag);
-					} else if (tag.name().equals("@return") || tag.name().equals("@author")
+						tags.put(pTag.kind() + "-"
+								+ pTag.parameterName().replace(",", ""), pTag);
+					} else if (tag.name().equals("@return")
+							|| tag.name().equals("@author")
 							|| tag.name().equals("@since")) {
 						tags.put(tag.name(), tag);
 					}
@@ -131,14 +135,17 @@ public class Logica {
 					Parametro auxParametro = new Parametro();
 					auxParametro.setNombre(parametro.name());
 					auxParametro.setTipo(parametro.type().typeName());
-					auxParametro.setComentario(tags.containsKey("@param-" + parametro.name())
-							? tags.get("@param-" + parametro.name()).text() : "");
+					auxParametro.setComentario(tags.containsKey("@param-"
+							+ parametro.name()) ? tags.get(
+							"@param-" + parametro.name()).text() : "");
 
 					auxMetodo.getParametros().add(auxParametro);
 				}
 
-				auxMetodo.setAutor(tags.containsKey("@author") ? tags.get("@author").text() : "");
-				auxMetodo.setDesde(tags.containsKey("@since") ? tags.get("@since").text() : "");
+				auxMetodo.setAutor(tags.containsKey("@author") ? tags.get(
+						"@author").text() : "");
+				auxMetodo.setDesde(tags.containsKey("@since") ? tags.get(
+						"@since").text() : "");
 
 				auxClase.getConstructores().add(auxMetodo);
 			}
@@ -163,8 +170,10 @@ public class Logica {
 				for (Tag tag : parmTag) {
 					if (tag.name().equals("@param")) {
 						ParamTag pTag = (ParamTag) tag;
-						tags.put(pTag.kind() + "-" + pTag.parameterName().replace(",", ""), pTag);
-					} else if (tag.name().equals("@return") || tag.name().equals("@author")
+						tags.put(pTag.kind() + "-"
+								+ pTag.parameterName().replace(",", ""), pTag);
+					} else if (tag.name().equals("@return")
+							|| tag.name().equals("@author")
 							|| tag.name().equals("@since")) {
 						tags.put(tag.name(), tag);
 					}
@@ -174,19 +183,23 @@ public class Logica {
 					Parametro auxParametro = new Parametro();
 					auxParametro.setNombre(parametro.name());
 					auxParametro.setTipo(parametro.type().typeName());
-					auxParametro.setComentario(tags.containsKey("@param-" + parametro.name())
-							? tags.get("@param-" + parametro.name()).text() : "");
+					auxParametro.setComentario(tags.containsKey("@param-"
+							+ parametro.name()) ? tags.get(
+							"@param-" + parametro.name()).text() : "");
 
 					auxMetodo.getParametros().add(auxParametro);
 				}
 
 				Parametro retorno = new Parametro();
 				retorno.setTipo(metodo.returnType().typeName());
-				retorno.setComentario(tags.containsKey("@return") ? tags.get("@return").text() : "");
+				retorno.setComentario(tags.containsKey("@return") ? tags.get(
+						"@return").text() : "");
 				auxMetodo.setRetorno(retorno);
 
-				auxMetodo.setAutor(tags.containsKey("@author") ? tags.get("@author").text() : "");
-				auxMetodo.setDesde(tags.containsKey("@since") ? tags.get("@since").text() : "");
+				auxMetodo.setAutor(tags.containsKey("@author") ? tags.get(
+						"@author").text() : "");
+				auxMetodo.setDesde(tags.containsKey("@since") ? tags.get(
+						"@since").text() : "");
 
 				auxClase.getMetodos().add(auxMetodo);
 
@@ -196,6 +209,21 @@ public class Logica {
 		}
 
 		return documento;
+	}
+
+	public Boolean testRepositorio(String ruta, String paquete) {
+
+		Documentador doclet = new Documentador(new File(ruta), paquete);
+		RootDoc doc = doclet.getRootDoc();
+
+		ClassDoc[] clases = doc.classes();
+
+		if (clases != null && clases.length > 0) {
+			return true;
+		}
+
+		return false;
+
 	}
 
 	private static Visibilidad getVisibilidad(ClassDoc clase) {

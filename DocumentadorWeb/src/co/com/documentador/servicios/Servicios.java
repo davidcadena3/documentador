@@ -51,8 +51,10 @@ public class Servicios {
 				node.id = id + "@node";
 				node.level = "1";
 				node.name = clase.getNombre();
-				node.type = (clase.getEsInterfaz() != null && clase.getEsInterfaz()) ? "interface"
-						: (clase.getEsEnum() != null && clase.getEsEnum()) ? "enum" : "class";
+				node.type = (clase.getEsInterfaz() != null && clase
+						.getEsInterfaz()) ? "interface"
+						: (clase.getEsEnum() != null && clase.getEsEnum()) ? "enum"
+								: "class";
 
 				retorno.nodes.add(node);
 			}
@@ -65,7 +67,8 @@ public class Servicios {
 	@GET
 	@Path("/consultarDocumentacion/{paquete}/{clase}")
 	@Produces("application/json")
-	public Clase consultarDocumentacion(@PathParam(value = "paquete") String paquete,
+	public Clase consultarDocumentacion(
+			@PathParam(value = "paquete") String paquete,
 			@PathParam(value = "clase") String clase) {
 		System.out.println("paquete: " + paquete + ", clase: " + clase);
 		paquete = paquete.replace("@node", "");
@@ -79,6 +82,18 @@ public class Servicios {
 		}
 
 		return null;
+	}
+
+	@GET
+	@Path("/testRepo/{ruta}/{paquete}")
+	@Produces("application/json")
+	public Boolean testRepo(@PathParam(value = "ruta") String ruta,
+			@PathParam(value = "paquete") String paquete) {
+		System.out.println("ruta: " + ruta + ", paquete: " + paquete);
+
+		ruta = ruta.replaceAll("@", "/");
+		Logica logica = new Logica();
+		return logica.testRepositorio(ruta, paquete);
 	}
 
 }
