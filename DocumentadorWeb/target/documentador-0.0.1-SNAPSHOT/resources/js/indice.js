@@ -31,7 +31,6 @@ function loadGtable() {
 								type : "GET",
 								url : ("rest/servicios/consultarDocumentacion/" + pack+"/"+cla),
 								success : function(json) {
-									console.log("json: " + JSON.stringify(json));
 									loadDocumentation(json);
 								},
 								error : function(XMLHttpRequest) {
@@ -98,7 +97,7 @@ function loadDocumentation(json){
 	
 	var fields = "";
 	for(i = 0; i<json.campos.length;i++){
-		var textField = "<tr><th scope=\"row\">"+(i+1)+"</th><td>"+json.campos[i].nombre+"</td><td>"+json.campos[i].tipo+"</td><td>";
+		var textField = "<tr><th scope=\"row\">"+(i+1)+"</th><td>"+json.campos[i].nombre+"</td><td><i>"+json.campos[i].tipo+"</i></td><td>";
 		
 		switch (json.campos[i].visibilidad) {
 		case "PRIVADO":
@@ -129,15 +128,15 @@ function loadDocumentation(json){
 	var constructors = "";
 	for(i = 0; i<json.constructores.length;i++){
 		var consJson = json.constructores[i];
-		var cons = "<tr><th scope=\"row\">"+(i+1)+"</th><td><b>"+consJson.nombre+"</b><br><small>"+consJson.comentario+"</small></td>";
+		var cons = "<tr><th scope=\"row\">"+(i+1)+"</th><td><b>"+consJson.nombre+'</b><br><small><b>Author: </b>'+consJson.autor+'</small> <small><b>Since: </b>'+consJson.desde+'</small><br><small>'+consJson.comentario+"</small></td>";
 		cons+="<td>";
 		
 		for(j = 0; j<consJson.parametros.length; j++){
 			var par = consJson.parametros[j];
 			if(j>0){
-				cons+=", ";
+				cons+="<br>";
 			}
-			cons+=(par.tipo+":"+par.nombre);
+			cons+=('<i>'+par.tipo+'</i> : '+par.nombre+' -- <small>'+par.comentario+'</small>');
 		}
 		cons+="</td><td>";
 		
@@ -154,7 +153,6 @@ function loadDocumentation(json){
 		}
 		
 		cons+="</td></tr>";
-		console.error(cons);
 		constructors+=cons;
 	}
 	
@@ -166,17 +164,17 @@ function loadDocumentation(json){
 	var methods = "";
 	for(i = 0; i<json.metodos.length;i++){
 		var metJson = json.metodos[i];
-		var mets = "<tr><th scope=\"row\">"+(i+1)+"</th><td><b>"+metJson.nombre+"</b><br><small>"+metJson.comentario+"</small></td>";
-		mets+="<td>";
+		var mets = "<tr><th scope=\"row\">"+(i+1)+"</th><td><b>"+metJson.nombre+'</b><br><small><b>Author: </b>'+metJson.autor+'</small> <small><b>Since: </b>'+metJson.desde+'</small><br><small>'+metJson.comentario+"</small></td>";
+		mets+='<td class="methodParams">';
 		
 		for(j = 0; j<metJson.parametros.length; j++){
 			var par = metJson.parametros[j];
 			if(j>0){
-				mets+=", ";
+				mets+="<br>";
 			}
-			mets+=(par.tipo+":"+par.nombre);
+			mets+=('<i>'+par.tipo+'</i> : '+par.nombre+' -- <small>'+par.comentario+'</small>');
 		}
-		mets+=("</td><td>"+metJson.retorno.tipo+"</td><td>");
+		mets+=('</td><td><i>'+(metJson.retorno.tipo=="void"?"":metJson.retorno.tipo)+'</i> -- <small>'+metJson.retorno.comentario+'</small></td><td>');
 		
 		switch (metJson.visibilidad) {
 		case "PRIVADO":

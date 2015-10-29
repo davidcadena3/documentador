@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 
 import co.com.documentador.implementacion.Logica;
 import co.com.documentador.modelo.Clase;
+import co.com.documentador.modelo.User;
 import co.com.documentador.modelo.json.IndiceResponse;
 import co.com.documentador.modelo.json.Node;
 
@@ -51,10 +52,8 @@ public class Servicios {
 				node.id = id + "@node";
 				node.level = "1";
 				node.name = clase.getNombre();
-				node.type = (clase.getEsInterfaz() != null && clase
-						.getEsInterfaz()) ? "interface"
-						: (clase.getEsEnum() != null && clase.getEsEnum()) ? "enum"
-								: "class";
+				node.type = (clase.getEsInterfaz() != null && clase.getEsInterfaz()) ? "interface"
+						: (clase.getEsEnum() != null && clase.getEsEnum()) ? "enum" : "class";
 
 				retorno.nodes.add(node);
 			}
@@ -67,8 +66,7 @@ public class Servicios {
 	@GET
 	@Path("/consultarDocumentacion/{paquete}/{clase}")
 	@Produces("application/json")
-	public Clase consultarDocumentacion(
-			@PathParam(value = "paquete") String paquete,
+	public Clase consultarDocumentacion(@PathParam(value = "paquete") String paquete,
 			@PathParam(value = "clase") String clase) {
 		System.out.println("paquete: " + paquete + ", clase: " + clase);
 		paquete = paquete.replace("@node", "");
@@ -87,13 +85,32 @@ public class Servicios {
 	@GET
 	@Path("/testRepo/{ruta}/{paquete}")
 	@Produces("application/json")
-	public Boolean testRepo(@PathParam(value = "ruta") String ruta,
-			@PathParam(value = "paquete") String paquete) {
+	public Boolean testRepo(@PathParam(value = "ruta") String ruta, @PathParam(value = "paquete") String paquete) {
 		System.out.println("ruta: " + ruta + ", paquete: " + paquete);
 
 		ruta = ruta.replaceAll("@", "/");
 		Logica logica = new Logica();
 		return logica.testRepositorio(ruta, paquete);
+	}
+
+	@GET
+	@Path("/login/{username}/{password}")
+	@Produces("application/json")
+	public User login(@PathParam(value = "username") String username, @PathParam(value = "password") String password) {
+		System.out.println("username: " + username + ", password: " + password);
+
+		if (username.equals("admin@telintel.net")) {
+			return new User("1", username, "admin");
+		} else if (username.equals("editor@telintel.net")) {
+			return new User("2", username, "editor");
+		} else if (username.equals("landingmaster@telintel.net")) {
+			return new User("3", username, "landingmaster");
+		} else if (username.equals("user@telintel.net")) {
+			return new User("4", username, "user");
+		} else {
+			return null;
+		}
+
 	}
 
 }

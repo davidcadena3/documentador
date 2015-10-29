@@ -9,4 +9,74 @@ body {
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
 	.table>tbody>tr>td, .table>tfoot>tr>td {
 	padding: 4px;
+	max-width: 100px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-size: small;
+}
+
+-methodParams {
+	/* 	width: 100px; */
+	
+}
+
+#noneConfigure {
+	margin-top: 20px;
+	margin-left: 5px;
+}
+
+.btn.outline {
+	background: none;
+	padding: 12px 22px;
+}
+
+.btn-primary.outline {
+	border: 2px solid #0099cc;
+	color: #0099cc;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active,
+	.btn-primary.outline.active, .open>.dropdown-toggle.btn-primary {
+	color: #33a6cc;
+	border-color: #33a6cc;
+}
+
+.btn-primary.outline:active, .btn-primary.outline.active {
+	border-color: #007299;
+	color: #FFFFFF;
+	box-shadow: none;
+}
+
+.btn-danger.outline {
+	border: 2px solid #d9534f;
+	color: #d9534f;
+}
+
+.btn-danger.outline:hover, .btn-danger.outline:focus, .btn-danger.outline:active,
+	.btn-danger.outline.active, .open>.dropdown-toggle.btn-danger {
+	color: #d9534f;
+	border-color: #d9534f;
+}
+
+.btn-danger.outline:active, .btn-danger.outline.active {
+	border-color: #d9534f;
+	color: #FFFFFF;
+	box-shadow: none;
+}
+
+.btn-info.outline {
+	border: 2px solid #5bc0de;
+	color: #5bc0de;
+}
+
+.btn-info.outline:hover, .btn-info.outline:focus, .btn-info.outline:active,
+	.btn-info.outline.active, .open>.dropdown-toggle.btn-info {
+	color: #5bc0de;
+	border-color: #5bc0de;
+}
+
+.btn-info.outline:active, .btn-info.outline.active {
+	border-color: #5bc0de;
+	color: #FFFFFF;
+	box-shadow: none;
 }
